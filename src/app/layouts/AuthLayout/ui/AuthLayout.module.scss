@@ -1,0 +1,7 @@
+.AuthLayout {
+  height: 100dvh;
+  width: min(400px, 95%);
+  margin: 0 auto;
+
+  padding-top: clamp(2rem, 5vw, 6rem);
+}

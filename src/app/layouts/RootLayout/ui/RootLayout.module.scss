@@ -1,0 +1,60 @@
+$maxWidth: 1440px;
+$navigationItemSize: 4rem;
+$navigationHeight: 4.5rem;
+
+.RootLayout {
+  height: 100dvh;
+  padding-bottom: $navigationHeight + 1rem;
+  overflow: scroll;
+
+  @media screen and (min-width: 430px) {
+    // display: none;
+  }
+}
+
+.Header {
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.Navigation {
+  height: $navigationHeight;
+
+  background: color-mix(in srgb, var(--background-secondary) 85%, transparent);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(0.5rem);
+
+  position: fixed;
+  inset: auto 0 0 0;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  .NavigationItem {
+    height: $navigationItemSize;
+    width: $navigationItemSize;
+
+    color: var(--foreground-secondary);
+    font-size: 12px;
+    &[data-active="true"] {
+      color: var(--foreground);
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    position: relative;
+    .indicator {
+      height: 1px;
+
+      background: var(--accent);
+
+      position: absolute;
+      inset: 0 0 auto 0;
+    }
+  }
+}

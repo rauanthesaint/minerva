@@ -1,0 +1,11 @@
+.CreateAccount {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    .block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}

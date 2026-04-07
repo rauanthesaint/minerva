@@ -1,0 +1,38 @@
+$padding: 0.25rem;
+
+.MenuContent {
+    width: 10rem;
+    background: var(--background-secondary);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: $padding;
+}
+
+.MenuItem {
+    outline: none;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: calc(var(--radius-sm) - $padding);
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 14px;
+
+    svg {
+        $size: 16px;
+        width: $size;
+        height: $size;
+    }
+
+    &:hover {
+        background: var(--interactive);
+    }
+
+    &[data-destructive="true"] {
+        color: red;
+    }
+}

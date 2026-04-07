@@ -1,0 +1,43 @@
+@function text-size($step) {
+    $base: 1rem;
+    $ratio: 1.2;
+    $result: $base;
+
+    @if $step > 0 {
+        @for $i from 1 through $step {
+            $result: $result * $ratio;
+        }
+    } @else if $step < 0 {
+        @for $i from 1 through abs($step) {
+            $result: calc($result / $ratio);
+        }
+    }
+
+    @return $result;
+}
+
+.Heading {
+    &[data-level="1"] {
+        font-size: text-size(3);
+        font-weight: 700;
+    }
+    &[data-level="2"] {
+        font-size: text-size(2);
+        font-weight: 600;
+    }
+    &[data-level="3"] {
+        font-size: text-size(1);
+        font-weight: 500;
+    }
+    &[data-level="4"] {
+        font-size: text-size(0);
+        font-weight: 500;
+    }
+}
+
+.Caption {
+    font-size: text-size(-1);
+    &.muted {
+        color: var(--foreground-secondary);
+    }
+}

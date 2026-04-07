@@ -1,0 +1,23 @@
+.UserBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .Avatar {
+    $height: 2rem;
+    width: $height;
+    height: $height;
+    border-radius: 50%;
+    background: var(--background-secondary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      $size: 20px;
+      width: $size;
+      height: $size;
+    }
+  }
+}

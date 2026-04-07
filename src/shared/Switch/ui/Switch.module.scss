@@ -1,0 +1,32 @@
+@use "sass:math";
+$height: 24px;
+$width: $height * 2;
+$padding: 2px;
+
+.Switch {
+    height: $height;
+    width: $width;
+    background: var(--interactive);
+    border-radius: math.div($height, 2);
+    padding: $padding;
+
+    transition: background-color 0.2s ease;
+    &[data-state="checked"] {
+        background: var(--accent);
+    }
+}
+
+.Thumb {
+    display: block;
+
+    $size: $height - $padding * 2;
+    background: var(--accent-foreground);
+    height: $size;
+    width: $size;
+    border-radius: 50%;
+
+    transition: transform 0.2s ease;
+    &[data-state="checked"] {
+        transform: translateX($width - $size - $padding * 2);
+    }
+}

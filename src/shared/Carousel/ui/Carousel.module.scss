@@ -1,0 +1,35 @@
+.CarouselContainer {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 2rem;
+  position: relative;
+  .CarouselItem {
+    flex: 0 0 min(100%, 400px);
+  }
+}
+
+.CarouselIndicator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+
+  & > * {
+    $height: 4px;
+    height: $height;
+    width: $height;
+    border-radius: 4px;
+
+    background: var(--surface);
+
+    transition:
+      background-color 0.2s ease,
+      width 0.2s ease;
+    &[data-active="true"] {
+      width: $height * 3;
+      background: var(--accent);
+    }
+  }
+}

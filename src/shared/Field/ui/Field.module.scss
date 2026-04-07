@@ -1,0 +1,9 @@
+.Field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.FieldError {
+    color: red;
+}

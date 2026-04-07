@@ -1,0 +1,113 @@
+.Button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    &[data-loading="true"] {
+        pointer-events: none;
+    }
+
+    position: relative;
+    .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: inherit;
+
+        svg {
+            animation: loader 1s ease infinite forwards;
+        }
+
+        @keyframes loader {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+}
+
+.Button {
+    &.md {
+        height: 2.25rem;
+        padding: 0 0.75rem;
+        border-radius: var(--radius-sm);
+
+        svg {
+            $size: 20px;
+            width: $size;
+            height: $size;
+        }
+        span {
+            margin: 0 0.5rem;
+        }
+    }
+
+    &.sm {
+        height: 2rem;
+        padding: 0 0.75rem;
+        border-radius: var(--radius-sm);
+        span {
+            margin: 0 0.5rem;
+        }
+        svg {
+            $size: 16px;
+            width: $size;
+            height: $size;
+        }
+        &[data-icon="true"] {
+            padding: unset;
+            width: 2rem;
+            span {
+                display: none;
+            }
+        }
+    }
+}
+
+.Button {
+    &.primary {
+        background: var(--accent);
+        color: var(--accent-foreground);
+
+        transition: box-shadow 0.2s ease;
+        box-shadow:
+            0 0 0 1px transparent,
+            0 0 0 4px transparent;
+
+        &:focus-visible,
+        &:hover {
+            box-shadow:
+                0 0 0 1px var(--accent),
+                0 0 0 4px rgba(79, 70, 229, 0.15);
+        }
+    }
+
+    &.secondary {
+        border: 1px solid var(--border);
+        background: var(--background-secondary);
+
+        transition: box-shadow 0.2s ease;
+        box-shadow:
+            0 0 0 1px transparent,
+            0 0 0 4px transparent;
+
+        &:focus-visible,
+        &:hover {
+            box-shadow:
+                0 0 0 1px var(--surface),
+                0 0 0 2px rgba(79, 70, 229, 0.15);
+        }
+    }
+
+    &.tertiary {
+        background: transparent;
+        color: var(--foreground-secondary);
+        &:hover {
+            background: var(--interactive);
+        }
+    }
+}
