@@ -12,7 +12,7 @@ export default function App() {
         <Route path="transactions" element={"Not implemented"} />
         <Route path="accounts">
           <Route index element={<AccountsPage />} />
-          <Route path=":accountId" element={"Account undefined"} />
+          <Route path=":accountId" element={<main>Account undefined</main>} />
         </Route>
         <Route path="analytics" element={"Not implemented"} />
         <Route path="settings" element={<SettingsPage />} />

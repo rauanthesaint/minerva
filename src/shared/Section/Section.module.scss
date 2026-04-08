@@ -1,0 +1,12 @@
+.Section {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  background: var(--background-secondary);
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+
+.SectionTitle {
+  margin-bottom: 1rem;
+  display: block;
+}

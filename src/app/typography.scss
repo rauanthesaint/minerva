@@ -1,5 +1,40 @@
+@use "sass:math";
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@function textSize($size) {
+  $base: 1rem;
+  $ratio: 1.15;
+
+  @return $base * math.pow($ratio, $size);
+}
 
 * {
   font-family: "Inter", sans-serif;
+}
+
+.text {
+  font-size: textSize(-1);
+  &.sm {
+    font-size: textSize(-2);
+  }
+}
+
+.heading {
+  font-size: textSize(1);
+  font-weight: 500;
+  &.lg {
+    font-size: textSize(2);
+  }
+  &.xl {
+    font-size: textSize(3);
+    font-weight: 600;
+  }
+  &.xxl {
+    font-size: textSize(4);
+    font-weight: 600;
+  }
+}
+
+.muted {
+  color: var(--foreground-secondary);
 }

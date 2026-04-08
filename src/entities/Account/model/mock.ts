@@ -2,7 +2,7 @@ import type { Account } from "./types";
 export const accountsMock: Account[] = [
   {
     id: "1",
-    name: "Very long account name",
+    name: "Very long account name".repeat(2),
     balance: -0.6734,
     createdAt: new Date(2026, 0, 17),
   },

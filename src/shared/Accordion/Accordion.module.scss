@@ -1,0 +1,37 @@
+.Accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.AccordionItem {
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  &:disabled {
+    pointer-events: none;
+  }
+}
+
+.AccordionItemTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .content {
+    width: 70%;
+    text-align: left;
+  }
+  svg {
+    color: var(--foreground-secondary);
+    transition: transform 0.2s ease;
+    &[data-active="true"] {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.AccordionItemContent {
+  padding-top: 1rem;
+}

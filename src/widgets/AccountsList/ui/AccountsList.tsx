@@ -2,26 +2,24 @@ import { accountsMock } from "@/entities/Account/model";
 import { AccountsListItem } from "./AccountsListItem";
 import styles from "./AccountsList.module.scss";
 import { Carousel } from "@/shared/Carousel";
-import { Button } from "@/shared/Button";
-import { Container } from "@/shared/Container";
+import { Section } from "@/shared/Section";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { CreditCardAddIcon } from "@hugeicons/core-free-icons";
+import { PlusSignIcon } from "@hugeicons/core-free-icons";
 
 export function AccountsList() {
   return (
-    <section className={styles.AccountsList}>
+    <Section className={styles.AccountsList}>
       <Carousel>
         {accountsMock.map((account) => (
           <AccountsListItem data={account} key={account.id} />
         ))}
+        <button className={styles.CreateAccountButton}>
+          <div className={styles.icon}>
+            <HugeiconsIcon icon={PlusSignIcon} />
+          </div>
+          <span>Новый счет</span>
+        </button>
       </Carousel>
-
-      <Container className={styles.container}>
-        <Button>
-          <HugeiconsIcon icon={CreditCardAddIcon} />
-          <span>New Account</span>
-        </Button>
-      </Container>
-    </section>
+    </Section>
   );
 }
