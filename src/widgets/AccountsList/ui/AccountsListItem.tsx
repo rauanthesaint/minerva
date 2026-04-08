@@ -1,8 +1,6 @@
 import type { Account } from "@/entities/Account/model";
 import styles from "./AccountsList.module.scss";
 import { format } from "date-fns";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { CreditCardIcon } from "@hugeicons/core-free-icons";
 import { formatAmount } from "@/shared/formatters";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
