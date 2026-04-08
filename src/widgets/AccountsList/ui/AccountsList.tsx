@@ -5,6 +5,8 @@ import { Carousel } from "@/shared/Carousel";
 import { Section } from "@/shared/Section";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PlusSignIcon } from "@hugeicons/core-free-icons";
+import { Modal, ModalContent, ModalTrigger } from "@/shared/Modal";
+import { CreateAccount } from "@/features/CreateAccount";
 
 export function AccountsList() {
   return (
@@ -13,12 +15,19 @@ export function AccountsList() {
         {accountsMock.map((account) => (
           <AccountsListItem data={account} key={account.id} />
         ))}
-        <button className={styles.CreateAccountButton}>
-          <div className={styles.icon}>
-            <HugeiconsIcon icon={PlusSignIcon} />
-          </div>
-          <span>Новый счет</span>
-        </button>
+        <Modal>
+          <ModalTrigger asChild>
+            <button className={styles.CreateAccountButton}>
+              <div className={styles.icon}>
+                <HugeiconsIcon icon={PlusSignIcon} />
+              </div>
+              <span>Новый счет</span>
+            </button>
+          </ModalTrigger>
+          <ModalContent>
+            <CreateAccount />
+          </ModalContent>
+        </Modal>
       </Carousel>
     </Section>
   );

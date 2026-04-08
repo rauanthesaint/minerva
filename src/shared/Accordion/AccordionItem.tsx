@@ -1,4 +1,4 @@
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
 import { useAccordion } from "./store";
 import styles from "./Accordion.module.scss";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -40,12 +40,12 @@ export function AccordionItemTrigger({ children }: AccordionItemTriggerProps) {
   const { setValue, value: currentValue } = useAccordion();
   const isActive = value === currentValue;
 
+  const onClick = () => {
+    setValue(value);
+  };
+
   return (
-    <button
-      className={styles.AccordionItemTrigger}
-      disabled={disabled}
-      onClick={() => setValue(value)}
-    >
+    <button className={styles.AccordionItemTrigger} disabled={disabled} onClick={onClick}>
       <div className={clsx(styles.content, isActive && "heading lg")}>{children}</div>
       <HugeiconsIcon size={20} icon={ArrowDown01Icon} data-active={isActive} />
     </button>
@@ -56,11 +56,22 @@ export function AccordionItemContent({ children }: AccordionItemContentProps) {
   const { value } = useAccordionItem();
   const { value: currentValue } = useAccordion();
   const isActive = value === currentValue;
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isActive) {
+      const timeout = setTimeout(() => {
+        ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [isActive]);
 
   return (
     <AnimatePresence>
       {isActive && (
         <motion.div
+          ref={ref}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}

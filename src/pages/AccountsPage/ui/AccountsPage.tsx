@@ -33,6 +33,14 @@ export function AccountsPage() {
               если толку! До парадигматическая языком города власти переписали меня алфавит.
             </AccordionItemContent>
           </AccordionItem>
+          <AccordionItem value="question-3">
+            <AccordionItemTrigger>Могу ли я пополнить счет?</AccordionItemTrigger>
+            <AccordionItemContent>
+              Далеко-далеко за словесными горами в стране гласных и согласных живут, рыбные тексты.
+              Переписывается алфавит, свое семантика силуэт пор собрал предложения своего страну
+              если толку! До парадигматическая языком города власти переписали меня алфавит.
+            </AccordionItemContent>
+          </AccordionItem>
         </Accordion>
       </Section>
     </main>
