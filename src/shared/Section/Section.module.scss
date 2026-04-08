@@ -4,6 +4,10 @@
   background: var(--background-secondary);
   border-radius: 1.5rem;
   padding: 1rem;
+
+  &:first-child {
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
 }
 
 .SectionTitle {

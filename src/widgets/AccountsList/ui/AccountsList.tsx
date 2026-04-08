@@ -5,7 +5,7 @@ import { Carousel } from "@/shared/Carousel";
 import { Section } from "@/shared/Section";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PlusSignIcon } from "@hugeicons/core-free-icons";
-import { Modal, ModalContent, ModalTrigger } from "@/shared/Modal";
+import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/shared/Modal";
 import { CreateAccount } from "@/features/CreateAccount";
 
 export function AccountsList() {
@@ -25,6 +25,7 @@ export function AccountsList() {
             </button>
           </ModalTrigger>
           <ModalContent>
+            <ModalTitle>Новый счет</ModalTitle>
             <CreateAccount />
           </ModalContent>
         </Modal>

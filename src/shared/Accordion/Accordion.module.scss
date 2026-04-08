@@ -28,6 +28,7 @@
     transition: transform 0.2s ease;
     &[data-active="true"] {
       transform: rotate(180deg);
+      color: var(--accent);
     }
   }
 }
