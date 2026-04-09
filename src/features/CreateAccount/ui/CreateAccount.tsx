@@ -1,7 +1,7 @@
 import { type CreateAccountDTO, CreateAccountSchema } from "@/entities/Account/model";
 import { Button } from "@/shared/Button";
 import { Field, FieldDescription, FieldError, FieldLabel } from "@/shared/Field";
-import { NumberInput, TextInput } from "@/shared/Input";
+import { InputAddon, NumberInput, TextInput } from "@/shared/Input";
 import { resolver } from "@/shared/resolver";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -36,24 +36,28 @@ export function CreateAccount() {
 
   return (
     <form className={styles.CreateAccount} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.block}>
-        <Field>
-          <FieldLabel>Название</FieldLabel>
-          <TextInput control={control} name="name" />
-          <FieldDescription>
-            Лучше всего подойдет название банка или назначение счета
-          </FieldDescription>
-          <FieldError>{errors.name?.type}</FieldError>
-        </Field>
+      {/* <div className={styles.block}> */}
+      <Field>
+        <FieldLabel>Название</FieldLabel>
+        <TextInput control={control} name="name" placeholder="Kaspi, Freedom, Halyk" />
+        <FieldDescription>
+          Лучше всего подойдет название банка или назначение счета
+        </FieldDescription>
+        <FieldError>{errors.name?.type}</FieldError>
+      </Field>
 
-        <Field>
-          <FieldLabel>Баланс</FieldLabel>
-          <NumberInput control={control} name="balance" placeholder="0.00" />
-          <FieldError>{errors.balance?.type}</FieldError>
-        </Field>
-      </div>
+      <Field>
+        <FieldLabel>Баланс</FieldLabel>
+        <NumberInput control={control} name="balance" placeholder="0.00">
+          <InputAddon>
+            <span className="muted">&#8376;</span>
+          </InputAddon>
+        </NumberInput>
+        <FieldError>{errors.balance?.type}</FieldError>
+      </Field>
+      {/* </div> */}
       <Button isLoading={isSubmitting} type="submit">
-        <span>Create an Account</span>
+        <span>Создать новый счет</span>
         <HugeiconsIcon icon={ArrowRight02Icon} />
       </Button>
     </form>

@@ -1,8 +1,7 @@
 $maxWidth: 1440px;
-$navigationItemSize: 4rem;
-$navigationHeight: 4.5rem;
-
-$headerHeight: 3.5rem;
+$navigationItemSize: 3.5rem;
+$navigationHeight: $navigationItemSize + 0.5rem;
+$headerHeight: 2rem;
 
 .RootLayout {
   height: 100dvh;

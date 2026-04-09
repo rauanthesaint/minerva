@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { AccordionStoreContext, createAccordionStore, type AccordionStoreAPI } from "./store";
+import { AccordionContext, createAccordionStore, type AccordionStoreAPI } from "./store";
 import styles from "./Accordion.module.scss";
 
 type AccordionProps = { children: ReactNode; defaultValue?: string };
@@ -12,8 +12,8 @@ export function Accordion({ children, defaultValue }: AccordionProps) {
   }
 
   return (
-    <AccordionStoreContext value={storeRef.current}>
+    <AccordionContext value={storeRef.current}>
       <ul className={styles.Accordion}>{children}</ul>
-    </AccordionStoreContext>
+    </AccordionContext>
   );
 }

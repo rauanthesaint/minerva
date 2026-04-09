@@ -3,11 +3,12 @@
 }
 
 .AccountsListItem {
-  background: url("/public/card-background.png") var(--background-secondary);
+  background: url("/card-background.png") var(--background-secondary);
   background-size: cover;
   background-position: center;
   justify-content: space-between;
   padding: 1.25rem;
+  box-shadow: 0 8px 28px -12px color-mix(in srgb, var(--shadow) 24%, transparent);
 
   .header {
     display: flex;
@@ -27,7 +28,6 @@
 
 .AccountsListItem,
 .CreateAccountButton {
-  box-shadow: 0 8px 28px -12px color-mix(in srgb, var(--shadow) 24%, transparent);
   border-radius: 1.5rem;
   aspect-ratio: 2/1;
   display: flex;
@@ -39,10 +39,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  background: var(--interactive);
+  color: var(--accent);
+
   .icon {
     width: 3rem;
     aspect-ratio: 1;
-    background: color-mix(in srgb, var(--accent) 20%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
     color: var(--accent);
     border-radius: 50%;
     display: flex;

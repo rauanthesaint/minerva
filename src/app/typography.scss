@@ -12,9 +12,20 @@
   font-family: "Inter", sans-serif;
 }
 
+html {
+  font-size: 15px;
+}
+
 .text {
-  font-size: textSize(-1);
+  font-size: textSize(0);
+  font-weight: 400;
+  &.bold {
+    font-weight: 500;
+  }
   &.sm {
+    font-size: textSize(-1);
+  }
+  &.xs {
     font-size: textSize(-2);
   }
 }
@@ -27,11 +38,11 @@
   }
   &.xl {
     font-size: textSize(3);
-    font-weight: 600;
+    font-weight: 500;
   }
   &.xxl {
     font-size: textSize(4);
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 

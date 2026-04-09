@@ -4,6 +4,7 @@
   justify-content: center;
 
   overflow: hidden;
+  font-weight: 400;
 
   &[data-loading="true"] {
     pointer-events: none;

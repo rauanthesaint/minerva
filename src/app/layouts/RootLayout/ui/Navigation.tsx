@@ -9,6 +9,7 @@ import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./RootLayout.module.scss";
 import { motion } from "motion/react";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/shared/Drawer";
 
 type NavigationItem = {
   title: string;
@@ -55,9 +56,15 @@ export function Navigation() {
           </Link>
         );
       })}
-      <button className={styles.NavigationItem}>
-        <HugeiconsIcon icon={Menu01Icon} />
-      </button>
+
+      <Drawer>
+        <DrawerTrigger>
+          <button className={styles.NavigationItem}>
+            <HugeiconsIcon icon={Menu01Icon} />
+          </button>
+        </DrawerTrigger>
+        <DrawerContent>Drawer</DrawerContent>
+      </Drawer>
     </nav>
   );
 }

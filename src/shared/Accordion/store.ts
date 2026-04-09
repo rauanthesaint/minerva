@@ -1,5 +1,4 @@
-import { createContext, useContext } from "react";
-import { createStore, useStore } from "zustand";
+import { createLocalContext, createLocalStore, type LocalStoreAPI } from "../local-context";
 
 type AccordionStore = {
   value: string | undefined;
@@ -7,8 +6,10 @@ type AccordionStore = {
   clearValue: () => void;
 };
 
+export type AccordionStoreAPI = LocalStoreAPI<AccordionStore>;
+
 export const createAccordionStore = (defaultValue?: string) =>
-  createStore<AccordionStore>((set) => ({
+  createLocalStore<AccordionStore>((set) => ({
     value: defaultValue,
     setValue: (value) =>
       set((state) => ({
@@ -17,12 +18,5 @@ export const createAccordionStore = (defaultValue?: string) =>
     clearValue: () => set({ value: undefined }),
   }));
 
-export type AccordionStoreAPI = ReturnType<typeof createAccordionStore>;
-
-export const AccordionStoreContext = createContext<AccordionStoreAPI | null>(null);
-
-export function useAccordion(): AccordionStore {
-  const store = useContext(AccordionStoreContext);
-  if (!store) throw new Error("useAccordion must be used within AccordionStoreProvider");
-  return useStore(store);
-}
+export const { useLocalStore: useAccordion, LocalContext: AccordionContext } =
+  createLocalContext<AccordionStore>();

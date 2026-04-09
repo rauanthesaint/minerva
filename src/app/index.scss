@@ -4,7 +4,7 @@
 :root {
   --radius-sm: 0.625rem;
 
-  --lvl-1: 100;
+  --lvl-1: 10;
 
   --accent: oklch(0.585 0.233 277.117);
   --accent-hover: #cc4000;
@@ -13,15 +13,15 @@
 
   --background: #f2f2f2;
   --background-secondary: #ffffff;
-  --surface: #e0e0e0;
+  --surface: #f1f1f1;
 
-  --foreground: #0a0a0a;
-  --foreground-secondary: #6b6b6b;
+  --foreground: #181818;
+  --foreground-secondary: #a4a4a4;
 
   --border: #e1e1e1;
-  --border-subtle: #e0e0e0;
+  --border-subtle: #f1f1f1;
 
-  --interactive: #d9d9d9;
+  --interactive: #f2f2f2;
   --interactive-hover: #c0c0c0;
 
   --shadow: #0a0a0a;

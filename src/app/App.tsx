@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { AccountsPage, NotFoundPage, RegistrationPage } from "@/pages";
+import { AccountPage, AccountsPage, NotFoundPage, RegistrationPage } from "@/pages";
 import { AuthLayout, RootLayout } from "./layouts";
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
         <Route path="transactions" element={"Not implemented"} /> */}
         <Route path="accounts">
           <Route index element={<AccountsPage />} />
-          <Route path=":accountId" element={<main>Account undefined</main>} />
+          <Route path=":accountId" element={<AccountPage />} />
         </Route>
         {/* <Route path="analytics" element={"Not implemented"} />
         <Route path="settings" element={<SettingsPage />} />

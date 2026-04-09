@@ -7,6 +7,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { PlusSignIcon } from "@hugeicons/core-free-icons";
 import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/shared/Modal";
 import { CreateAccount } from "@/features/CreateAccount";
+import { ModalHeader } from "@/shared/Modal/Modal";
 
 export function AccountsList() {
   return (
@@ -16,7 +17,7 @@ export function AccountsList() {
           <AccountsListItem data={account} key={account.id} />
         ))}
         <Modal>
-          <ModalTrigger asChild>
+          <ModalTrigger>
             <button className={styles.CreateAccountButton}>
               <div className={styles.icon}>
                 <HugeiconsIcon icon={PlusSignIcon} />
@@ -25,7 +26,9 @@ export function AccountsList() {
             </button>
           </ModalTrigger>
           <ModalContent>
-            <ModalTitle>Новый счет</ModalTitle>
+            <ModalHeader>
+              <ModalTitle>Новый счет</ModalTitle>
+            </ModalHeader>
             <CreateAccount />
           </ModalContent>
         </Modal>

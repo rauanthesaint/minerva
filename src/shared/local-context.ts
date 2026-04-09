@@ -1,41 +1,25 @@
 import { createContext, useContext } from "react";
-import { create, useStore, type StoreApi } from "zustand";
+import { type StoreApi, createStore, useStore } from "zustand";
 
-type LocalStorage = {
-  isOpen: boolean;
-  close: () => void;
-  open: () => void;
-  toggle: () => void;
-};
+export type LocalStoreAPI<T extends object> = StoreApi<T>;
 
-type LocalStorageApi<T extends LocalStorage = LocalStorage> = StoreApi<T>;
-
-export function createLocalStorage<T extends LocalStorage>(
-  extendStorage?: (
-    set: (partial: Partial<T>) => void,
+export function createLocalStore<T extends object>(
+  state: (
+    set: (partial: T | Partial<T> | ((state: T) => T | Partial<T>)) => void,
     get: () => T,
   ) => Partial<T>,
 ) {
-  return create<T>(
-    (set, get) =>
-      ({
-        isOpen: false,
-        open: () => set({ isOpen: true } as Partial<T>),
-        close: () => set({ isOpen: false } as Partial<T>),
-        toggle: () => set((state) => ({ isOpen: !state.isOpen }) as Partial<T>),
-        ...extendStorage?.(set, get),
-      }) as T,
-  );
+  return createStore<T>((set, get) => state(set, get) as T);
 }
 
-export function createLocalContext<T extends LocalStorage>() {
-  const Context = createContext<LocalStorageApi<T> | null>(null);
+export function createLocalContext<T extends object>() {
+  const LocalContext = createContext<LocalStoreAPI<T> | null>(null);
 
-  function useLocalStorage(): T {
-    const storage = useContext(Context);
-    if (!storage) throw new Error("Storage hook must be used within provider");
-    return useStore(storage);
+  function useLocalStore(): T {
+    const store = useContext(LocalContext);
+    if (!store) throw new Error("Store hook must be used within provider");
+    return useStore(store);
   }
 
-  return { Context, useLocalStorage };
+  return { LocalContext, useLocalStore };
 }

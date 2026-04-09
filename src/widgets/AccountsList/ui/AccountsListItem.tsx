@@ -7,15 +7,19 @@ import clsx from "clsx";
 
 export function AccountsListItem({ data }: { data: Account }) {
   const { name, createdAt, balance, id } = data;
+  const [balanceDecimal, balanceFraction] = formatAmount(balance);
 
   return (
     <Link to={id}>
       <article className={styles.AccountsListItem}>
         <header className={styles.header}>
           <span className={clsx("heading lg", styles.title)}>{name}</span>
-          <span>{formatAmount(balance)}</span>
+          <span>
+            {balanceDecimal}
+            <span className="text sm muted">{balanceFraction}</span>
+          </span>
         </header>
-        <span className="text muted">{format(createdAt, "dd MMM yyyy")}</span>
+        <span className="text sm muted">{format(createdAt, "dd MMM yyyy")}</span>
       </article>
     </Link>
   );

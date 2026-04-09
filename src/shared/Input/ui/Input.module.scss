@@ -1,53 +1,42 @@
 .Input {
-    height: 2.25rem;
-    background: var(--interactive);
-    border-radius: var(--radius-sm);
+  height: 2.25rem;
+  background: var(--interactive);
+  border-radius: var(--radius-sm);
 
-    display: flex;
-    align-items: center;
-    gap: 0.675rem;
-    padding: 0 0.675rem;
+  display: flex;
+  align-items: center;
+  gap: 0.675rem;
+  padding: 0 0.675rem;
 
-    input {
-        height: 100%;
-        width: 100%;
-        &::placeholder {
-            color: var(--foreground-secondary);
-        }
-
-        &[type="number"] {
-            text-align: right;
-        }
+  input {
+    height: 100%;
+    width: 100%;
+    &::placeholder {
+      color: var(--foreground-secondary);
     }
 
-    svg {
-        color: var(--foreground-secondary);
-        $size: 20px;
-        width: $size;
-        height: $size;
+    &[type="number"] {
+      text-align: right;
     }
+  }
 
-    button {
-        display: inline-flex;
-        $size: 18px;
-        width: $size;
-        height: $size;
-    }
+  svg {
+    color: var(--foreground-secondary);
+    $size: 20px;
+    width: $size;
+    height: $size;
+  }
 
-    transition: box-shadow 0.2s ease;
-    box-shadow:
-        0 0 0 1px transparent,
-        0 0 0 4px transparent;
+  button {
+    display: inline-flex;
+    $size: 18px;
+    width: $size;
+    height: $size;
+  }
 
-    &:focus-within {
-        box-shadow:
-            0 0 0 1px var(--accent),
-            0 0 0 4px rgba(79, 70, 229, 0.15);
-    }
-}
-
-.NumberInput {
-    input {
-        text-align: right;
-    }
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 0 0 1px transparent;
+  &:focus-within {
+    box-shadow: 0 0 0 1px var(--accent);
+  }
 }
