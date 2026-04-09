@@ -21,3 +21,7 @@ export type PopoverContentProps = {
   children: ReactNode;
   className?: string;
 };
+
+export type PopoverOverlayProps = {
+  className?: string;
+};

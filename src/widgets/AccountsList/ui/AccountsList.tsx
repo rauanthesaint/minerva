@@ -6,7 +6,7 @@ import { Section } from "@/shared/Section";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PlusSignIcon } from "@hugeicons/core-free-icons";
 import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/shared/Modal";
-import { CreateAccount } from "@/features/CreateAccount";
+import { CreateAccount } from "@/features";
 import { ModalHeader } from "@/shared/Modal/Modal";
 
 export function AccountsList() {

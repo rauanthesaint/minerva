@@ -1,3 +1,5 @@
 import { CreateUser } from "./CreateUser";
+import { CreateAccount } from "./CreateAccount";
+import { CreateTransaction } from "./CreateTransaction";
 
-export { CreateUser };
+export { CreateUser, CreateAccount, CreateTransaction };

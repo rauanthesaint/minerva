@@ -1,0 +1,29 @@
+.SelectContent {
+  height: auto;
+  max-height: 50%;
+  overflow: scroll;
+}
+
+.SelectItemList {
+  padding-bottom: 1rem;
+  .SelectItem {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    // border-radius: var(--radius-sm);
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    // &[data-selected="true"] {
+    //   //   background: color-mix(in srgb, var(--accent) 10%, transparent);
+
+    // }
+    svg {
+      color: var(--accent);
+    }
+  }
+}

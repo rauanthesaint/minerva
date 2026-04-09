@@ -18,15 +18,15 @@
     align-items: center;
     justify-content: center;
     background-color: inherit;
+  }
 
-    svg {
-      animation: loader 1s ease infinite forwards;
-    }
+  .Spinner {
+    animation: loader 0.3s linear infinite forwards;
+  }
 
-    @keyframes loader {
-      to {
-        transform: rotate(360deg);
-      }
+  @keyframes loader {
+    to {
+      transform: rotate(360deg);
     }
   }
 }

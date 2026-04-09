@@ -1,82 +1,56 @@
 import {
-    Popover,
-    PopoverContent,
-    PopoverPortal,
-    PopoverTrigger,
-    type PopoverProps,
-} from "@radix-ui/react-popover";
-// import {
-//     DropdownMenuItem as RDropdownMenuItem,
-//     type DropdownMenuItemProps,
-// } from "@radix-ui/react-dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  useClickOutside,
+  usePopover,
+  type PopoverContentProps,
+  type PopoverProps,
+} from "@/shared/Popover";
 import clsx from "clsx";
+import { useCallback, useState, type FC, type ReactNode } from "react";
 
 import styles from "./Dropdown.module.scss";
 
-type DropdownProps = Omit<PopoverProps, "open" | "onOpenChange" | "modal">;
-type DropdownTriggerProps = {
-    children: React.ReactNode;
-    asChild?: boolean;
-};
-type DropdownContentProps = {
-    children: React.ReactNode;
-    className?: string;
-    align?: "start" | "center" | "end";
-    side?: "top" | "right" | "bottom" | "left";
+export const Dropdown: FC<PopoverProps> = ({ children, defaultOpen }) => {
+  return (
+    <Popover defaultOpen={defaultOpen}>
+      <DropdownWrapper>{children}</DropdownWrapper>
+    </Popover>
+  );
 };
 
-export function Dropdown({ children, defaultOpen }: DropdownProps) {
-    return <Popover defaultOpen={defaultOpen}>{children}</Popover>;
-}
+const DropdownWrapper = ({ children }: { children: ReactNode }) => {
+  const { close } = usePopover();
+  const ref = useClickOutside(close);
+  return (
+    <div className={styles.Dropdown} ref={ref}>
+      {children}
+    </div>
+  );
+};
 
-export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
-    return <PopoverTrigger asChild={asChild}>{children}</PopoverTrigger>;
-}
+export const DropdownTrigger = PopoverTrigger;
 
-export function DropdownContent({
-    children,
-    className,
-    align = "center",
-    side = "bottom",
-}: DropdownContentProps) {
-    return (
-        <PopoverPortal>
-            <PopoverContent
-                side={side}
-                align={align}
-                sideOffset={8}
-                className={clsx(styles.DropdownContent, className)}
-            >
-                {children}
-            </PopoverContent>
-        </PopoverPortal>
-    );
-}
+export const DropdownContent: FC<PopoverContentProps> = ({ className, children }) => {
+  const [width, setWidth] = useState<number>(0);
 
-// export function DropdownMenu({
-//     children,
-//     className,
-//     align = "center",
-//     side = "bottom",
-// }: DropdownContentProps) {
-//     return (
-//         <PopoverPortal>
-//             <PopoverContent
-//                 side={side}
-//                 align={align}
-//                 sideOffset={8}
-//                 className={clsx(styles.DropdownMenu, className)}
-//             >
-//                 {children}
-//             </PopoverContent>
-//         </PopoverPortal>
-//     );
-// }
+  const ref = useCallback((node: HTMLDivElement | null) => {
+    if (!node) return;
+    setWidth(node.offsetWidth);
+  }, []);
 
-// export function DropdownMenuItem({ children, className, ...rest }: DropdownMenuItemProps) {
-//     return (
-//         <RDropdownMenuItem className={clsx(styles.DropdownMenuItem, className)} {...rest}>
-//             {children}
-//         </RDropdownMenuItem>
-//     );
-// }
+  return (
+    <PopoverContent
+      ref={ref}
+      style={{ top: "100%", left: `calc(50% - ${width / 2}px)` }}
+      initial={{ y: 20, opacity: 0, scale: 0.95 }}
+      exit={{ y: 20, opacity: 0, scale: 0.95 }}
+      animate={{ y: 0, opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+      className={clsx(styles.DropdownContent, className)}
+    >
+      {children}
+    </PopoverContent>
+  );
+};

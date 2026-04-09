@@ -1,6 +1,18 @@
+.Dropdown {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
 .DropdownContent {
-    background: var(--background-secondary);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: var(--radius-sm);
+  position: absolute;
+  z-index: var(--lvl-2);
+  background: var(--background-secondary);
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 28px -12px color-mix(in srgb, var(--shadow) 24%, transparent);
+
+  min-width: 16rem;
 }

@@ -1,4 +1,4 @@
-import { cloneElement, useEffect, useRef, type FC, type ReactElement } from "react";
+import { cloneElement, forwardRef, useEffect, useRef, type FC, type ReactElement } from "react";
 import { createPortal } from "react-dom";
 import { createPopoverStore, PopoverContext, usePopover, type PopoverStoreAPI } from "./store";
 import { AnimatePresence, motion, type HTMLMotionProps } from "motion/react";
@@ -9,6 +9,7 @@ import type {
   PopoverTriggerChildrenProps,
   PopoverPortalProps,
   PopoverContentProps,
+  PopoverOverlayProps,
 } from "./types";
 
 /** Popover */
@@ -37,12 +38,11 @@ export const PopoverTrigger: FC<PopoverTriggerProps> = ({ children }) => {
 };
 
 /** Popover Content */
-export const PopoverContent: FC<PopoverContentProps & HTMLMotionProps<"div">> = ({
-  children,
-  ...rest
-}) => {
-  const { isOpen, close } = usePopover();
-  const ref = useRef<HTMLDivElement>(null);
+export const PopoverContent = forwardRef<
+  HTMLDivElement,
+  PopoverContentProps & HTMLMotionProps<"div">
+>(({ children, ...rest }, ref) => {
+  const { isOpen } = usePopover();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -55,16 +55,6 @@ export const PopoverContent: FC<PopoverContentProps & HTMLMotionProps<"div">> = 
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        close();
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [close]);
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -74,26 +64,44 @@ export const PopoverContent: FC<PopoverContentProps & HTMLMotionProps<"div">> = 
       )}
     </AnimatePresence>
   );
-};
+});
 
-export const PopoverOverlay: FC = () => {
-  const { isOpen } = usePopover();
+export const PopoverOverlay: FC<PopoverOverlayProps> = ({ className }) => {
+  const { isOpen, close } = usePopover();
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          onClick={close}
           style={{
             position: "fixed",
             inset: "0",
             backgroundColor: "rgba(0, 0, 0, .3)",
-            zIndex: "var(--lvl-1) - 1",
+            zIndex: "inherit",
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
+          className={className}
         />
       )}
     </AnimatePresence>
   );
 };
+
+export function useClickOutside(handler: () => void) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        handler();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [handler]);
+
+  return ref;
+}
